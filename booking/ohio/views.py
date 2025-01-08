@@ -5,7 +5,7 @@ from .serializers import *
 from .models import *
 from rest_framework import viewsets, generics, permissions, status
 from django_filters.rest_framework import DjangoFilterBackend
-from .filters import RoomFilter
+from .filters import *
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .paginations import HotelPagination
 from .permissions import CheckUserRating, CheckBooking, CheckHotelUser, Client, CheckBookingUser
@@ -60,16 +60,6 @@ class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Profile.objects.filter(id=self.request.user.id)
 
-# class CityListAPIView(generics.ListAPIView):
-#     queryset = City.objects.all()
-#     serializer_class = CityListSerializer
-#     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-#
-# class CityDetailAPIView(generics.RetrieveAPIView):
-#     queryset = City.objects.all()
-#     serializer_class = CityDetailSerializer
-#     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
 class HotelListAPIView(generics.ListAPIView):
     queryset = Hotel.objects.all()
     serializer_class = HotelListSerializer
@@ -89,7 +79,7 @@ class RoomListAPIView(generics.ListAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_class = RoomFilter
+    filterset_class = HotelFilter, RoomFilter
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class RoomDetailAPIVie(generics.RetrieveUpdateDestroyAPIView):

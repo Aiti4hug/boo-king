@@ -47,11 +47,6 @@ class ProfileSimpleSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ['first_name', 'last_name']
 
-# class CityListSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = City
-#         fields = ['city_name']
-
 class HotelPhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = HotelPhoto
@@ -82,7 +77,7 @@ class HotelListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Hotel
-        fields = ['id', 'hotel_photo', 'hotel_name', 'country', 'city',
+        fields = ['id', 'hotel_photo', 'hotel_name', 'country',
                   'hotel_address', 'avg_rating', 'count_people', 'year']
 
     def get_avg_rating(self, obj):
@@ -106,7 +101,7 @@ class HotelDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Hotel
-        fields = ['hotel_name', 'hotel_photo', 'country', 'city',
+        fields = ['hotel_name', 'hotel_photo', 'country',
                   'hotel_owner', 'hotel_video', 'hotel_address',
                   'ratings', 'avg_rating', 'count_people', 'description', 'year']
 
@@ -133,14 +128,6 @@ class BookingDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = '__all__'
-
-# class CityDetailSerializer(serializers.ModelSerializer):
-#     hotels = HotelListSerializer(many=True, read_only=True)
-#
-#     class Meta:
-#         model = City
-#         fields = ['city_name', 'hotels']
-
 
 class RatingDetailSerializer(serializers.ModelSerializer):
     profile = ProfileSimpleSerializer()

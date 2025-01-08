@@ -7,14 +7,15 @@ class HotelFilter(FilterSet):
         model = Hotel
         fields = {
             'hotel_name': ['exact'],
-#             'hotel_address': ['exact'],
-#             'country': ['exact'],
-#             'city': ['exact'],
+            'hotel_address': ['exact'],
+            'country': ['exact'],
         }
+
 
 class RoomFilter(FilterSet):
     class Meta:
         model = Room
         fields = {
-            'room_price': ['gt', 'lt']
+            'room_number': ['exact'],
+            'room_type': ['exact'],
         }

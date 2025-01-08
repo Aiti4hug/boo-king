@@ -19,17 +19,9 @@ class Profile(AbstractUser):
         return f'{self.first_name} - {self.last_name}'
 
 
-# class City(models.Model):
-#     city_name = models.CharField(max_length=30, unique=True)
-#
-#     def __str__(self):
-#         return self.city_name
-
-
 class Hotel(models.Model):
     hotel_name = models.CharField(max_length=60)
     country = models.CharField(max_length=50)
-    # city = models.ManyToManyField(City, related_name='hotels')
     hotel_owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField()
     hotel_address = models.CharField(max_length=50)
